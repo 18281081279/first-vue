@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <p class="right">right</p>
+    <div class="right">
+        <p>right</p>
+        <!--如果用:init:'2',则2为数值，init:2，2为字符串!-->
+        <MyCount :init='2'></MyCount>
     </div>
 </template>
 
@@ -8,8 +10,10 @@
 
 </script>
 
-<style lang="less">
-    .right{
-        background-color:cyan;
+<style lang="less" scoped>
+    .right {
+        background-color: cyan;
+        width: 50%;
+        height: 100px;
     }
 </style>

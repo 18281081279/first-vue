@@ -2,17 +2,13 @@
 import Vue from 'vue'
 //导入App.vue跟组件
 import App from './App.vue'
-//导入test.vue
-import test from './test.vue'
+//在main.js中导入Count,并用Vue.component注册全局组件
+import Count from '@/components/Count.vue'
+Vue.component('MyCount', Count)
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
 }).$mount('#app')
-//.$mount('#app')和el:'#app'一样
-
-new Vue({
-  render: h => h(test),
-}).$mount('#test')
 //.$mount('#app')和el:'#app'一样

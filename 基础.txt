@@ -1,0 +1,50 @@
+一：组件
+
+1：组件的使用
+    每个vue组件，由三部分构成：template、script、style
+    使用组件的步骤：1导入组件，2在script中用components节点注册组件(私有子组件)，3以标签的形式使用组件
+                    或：在main.js中导入Count,并用Vue.component注册全局组件
+2：生命周期
+    组件创建阶段:beforeCreated,created,beforeMount,Mounted
+    //beforeCreate,此时props,data,method都不可用
+    //created,初始化props,data,method,一般在这个时候发送ajax请求,但是这个时候模板结构还没生成，不能操作dom
+    //beforMount,在即将把 HTML结构渲染到页面之前
+    //mounted,HTML结构已经创建好，此时可以操作dom
+    
+    组件运行阶段:beforeUpdate,update
+    //beforeUpdate,检测到数据的变化，将要重新渲染dom元素。此时数据是最新的，但是dom元素不变
+    //updated,根据最新的数据，重新渲染dom元素
+
+    组件销毁阶段:beforeDestrot,destroyed
+    //beforeDestroy,组件将要被销毁，但还可以被访问到
+    //destroyed,组件被销毁
+
+3：组件之间数据共享
+    组件之间常见的关系：父子关系，兄弟关系
+    
+    父向子传递数据，使用自定义属性：
+        子组件在props声明自定义属性，父组件调用时，用v-bind传入数据。
+    
+    子想父传递数据，使用自定义事件：
+        在子组件中调用$emit('name','var')方法
+        在父组件中调用子组件时候调用 <son @name='fun'></son>
+        在父组件中调用fun(val){}得到传递的值
+
+    兄弟之间数据共享，在vue2.0中使用EventBus
+        创建EventBus.js
+        在发送方使用bus.$emit方法
+        在接受方使用bus.$on方法
+
+4：ref引用dom和组件
+    使用ref引用dom元素
+    组件中有一个$refs空对象，可以放dom元素的引用
+        例:<div ref='a'></div>
+            <script>
+                this.$refs.a
+            </script>
+    
+    使用ref引用组件
+        <Left ref='left'></Left>
+
+5：动态组件
+    
