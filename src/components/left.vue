@@ -2,18 +2,39 @@
     <div class="left">
         <p>left</p>
         <MyCount :init='10'></MyCount>
+        <button @click="add">count +1</button>
+        <p>{{count}}</p>
+        <hr>
+        <slot name="slot1"></slot>
     </div>
 </template>
 
 <script>
-
+    export default{
+        data(){
+            return{
+                count:0
+            }
+        },
+        methods: {
+            add(){
+                this.count++;
+            }
+        },
+        deactivated(){
+            console.log("组件被缓存了");
+        },
+        activated() {
+            console.log("组件被激活了")
+        },
+    }
 </script>
 
 <style lang="less" scoped>
     .left {
         background-color: antiquewhite;
         width: 50%;
-        height: 100px;
+        height: 200px;
         color: skyblue
     }
 

@@ -1,6 +1,7 @@
-一：组件
+
 
 1：组件的使用
+    可以使用name给组件取名
     每个vue组件，由三部分构成：template、script、style
     使用组件的步骤：1导入组件，2在script中用components节点注册组件(私有子组件)，3以标签的形式使用组件
                     或：在main.js中导入Count,并用Vue.component注册全局组件
@@ -47,4 +48,57 @@
         <Left ref='left'></Left>
 
 5：动态组件
-    
+    component标签
+    keep-alive保持状态,可以缓存标签，而不是销毁
+        当组件被缓存时，会触发deactivated生命周期函数
+        当组件被激活时，或触发activated生命周期函数
+        include属性可以指定哪些组件可以被缓存,
+            或者exclude指定哪些属性不能被缓存，不能同时使用这两个属性
+
+6：插槽（slot）
+    允许开发者在封装组件时，把不确定的、希望用户指定的部分定义为插槽
+    具名插槽：使用v-slot指定渲染到哪个标签，可以简写为#
+    作用域插槽：可以在插槽中定义数据
+
+7：自定义指令
+    私有自定义指令，全局自定义指令
+    私有指令:
+        directive:{
+            color:{
+                bind(el){
+                    el.style.color= 'red'
+                }
+            }
+        }
+        <div v-color></div>
+
+        动态绑定
+        data(){
+            return:{
+                color:blue
+            }
+        }
+
+        directive:{
+            color:{
+                bind(el,binding){
+                    el.style.color = binding.value
+                }
+                //bind只会被调用一次，所以使用updata，让dom元素改变时，再次触发
+                updata(el,binding){
+                    el.style.color = binding.value
+                }
+            }
+        }
+        <div v-color='color'></div>
+
+        全局指令
+        Vue.directive('color',function(el,binding){
+            ……
+        })
+8：路由
+    路由就是对应关系
+    工作流程：  用户点击网页上的路由链接    
+                url地址栏的hash值发生变化
+                前端路由监听到hash地质变化
+                前端路由把当前的hash地址对应的组件渲染到页面

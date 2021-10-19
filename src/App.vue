@@ -14,8 +14,25 @@
       <Left></Left>
       <Right></Right>
     </div>
+    <!--生命周期-->
     <div>
       <LifeCircle :name="name"></LifeCircle>
+    </div>
+    <!--动态组件-->
+    <div>
+      <button @click="showLeft">展示left</button>
+      <button @click="showRight">展示Right</button>
+      <keep-alive>
+        <component :is="comName"></component>
+      </keep-alive>
+    </div>
+    <!--插槽-->
+    <div>
+      <Left>
+        <template #slot1>
+          <P>这是一个插槽</P>
+        </template>
+      </Left>
     </div>
   </div>
 </template>
@@ -31,6 +48,7 @@
       return {
         name: "蒋沛汛",
         isShow: false,
+        comName: "Left"
       };
     },
 
@@ -43,6 +61,12 @@
           this.isShow = true;
         }
       },
+      showLeft() {
+        this.comName = "Left";
+      },
+      showRight() {
+        this.comName = "Right";
+      }
     },
 
     //侦听器
