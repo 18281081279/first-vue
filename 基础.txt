@@ -102,3 +102,23 @@
                 url地址栏的hash值发生变化
                 前端路由监听到hash地质变化
                 前端路由把当前的hash地址对应的组件渲染到页面
+    安装配置router
+    基本使用见： /router、/App2.vue;
+    嵌套路由:chidren
+    动态路由匹配,冒号后面是动态参数的名称 
+    {path:'/movie/:id,component:Movie}
+    在路由参数对象中，this.$route.query访问查询参数
+                    this.$route.params访问路径参数
+                    this.$toute.fullpath访问完整参数
+    
+    声明式导航&编程式导航
+    编程式导航：vue-router中常用的API
+                //跳转到指定的地址，并增加一条历史记录
+                this.$router.push('Hash地址')
+                //跳转到指定的地址，并替换掉当前历史记录
+                this.$router.replace('Hash地址')
+                //在浏览历史中前进或后退
+                this.$router.go(数值n)
+    
+    导航守卫：控制路由的访问权限
+            全局前置守卫
